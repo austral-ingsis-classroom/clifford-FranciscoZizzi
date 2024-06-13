@@ -14,10 +14,10 @@ public class RemoveCommand implements Command {
     if (options.isEmpty() && arguments.isEmpty()) {
       throw new IllegalArgumentException("missing arguments");
     }
-    if (options.getFirst().equals("--recursive") && arguments.isEmpty()) {
+    if (!options.isEmpty() && options.getFirst().equals("--recursive") && arguments.isEmpty()) {
       cli.currentDirectory.remove("--recursive");
       return "'--recursive' removed";
-    } else if (options.getFirst().equals("--recursive")) {
+    } else if (!options.isEmpty() && options.getFirst().equals("--recursive")) {
         cli.currentDirectory.remove(arguments.getFirst());
     } else {
       if (options.isEmpty()) {
@@ -25,7 +25,7 @@ public class RemoveCommand implements Command {
         if (!(object instanceof Directory)) {
           cli.currentDirectory.remove(arguments.getFirst());
         } else {
-          throw new IllegalArgumentException("must use --recursive to delete directory");
+          return "cannot remove '" + arguments.getFirst() + "', is a directory";
         }
       }
     }

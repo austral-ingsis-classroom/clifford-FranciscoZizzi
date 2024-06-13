@@ -9,10 +9,10 @@ import java.util.List;
 public class MyFileSystemRunner implements FileSystemRunner {
   @Override
   public List<String> executeCommands(List<String> commands) {
-    CLI cli = new CLI(new Directory("root"));
+    CLI cli = new CLI(new Directory("/"));
     List<String> result = new ArrayList<>();
     for (String command : commands) {
-      result.add(cli.executeCommand(command));
+     result.add(cli.executeCommand(command));
     }
     return result;
   }

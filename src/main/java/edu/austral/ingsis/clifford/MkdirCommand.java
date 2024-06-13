@@ -19,6 +19,6 @@ public class MkdirCommand implements Command {
       throw new IllegalArgumentException("directory cannot contain a / in it's name");
     }
     cli.currentDirectory.addChild(new Directory(dirName));
-    return "'" + dirName + "' file created";
+    return "'" + dirName + "' directory created";
   }
 }

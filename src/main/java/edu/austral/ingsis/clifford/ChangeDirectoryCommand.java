@@ -20,16 +20,30 @@ public class ChangeDirectoryCommand implements Command {
     String argument = arguments.getFirst();
     switch (argument) {
       case "." -> { }
-      case ".." -> cli.currentDirectory = goToParentDirectory();
-//      case "/" -> cli.currentDirectory = cli.root;
+      case ".." -> {
+        Directory parent = goToParentDirectory();
+        if (parent == null) {
+          cli.currentDirectory = cli.root;
+          return getSuccessMessage(cli.root.getName());
+        }
+        cli.currentDirectory = goToParentDirectory();
+      }
       default -> {
         if (argument.startsWith("/")) {
           cli.currentDirectory = cli.root;
           String[] route = argument.split("/");
-          navigateRoute(route);
+          try {
+            navigateRoute(route);
+          } catch (Exception e) {
+            return e.getMessage();
+          }
         } else {
           String[] route = argument.split("/");
-          navigateRoute(route);
+          try {
+            navigateRoute(route);
+          } catch (Exception e) {
+            return e.getMessage();
+          }
         }
       }
     }
@@ -37,15 +51,11 @@ public class ChangeDirectoryCommand implements Command {
   }
 
   private String getSuccessMessage(String directoryName) {
-    return "moved to directory: '" + directoryName + "'";
+    return "moved to directory '" + directoryName + "'";
   }
 
   private Directory goToParentDirectory() {
-    Directory parent = findDirectoryWithChild(cli.root, cli.currentDirectory.getName());
-    if (parent == null) {
-      throw new IllegalArgumentException("already at root");
-    }
-    return parent;
+    return findDirectoryWithChild(cli.root, cli.currentDirectory.getName());
   }
 
   private Directory findDirectoryWithChild(Directory directory, String childName) {
@@ -73,7 +83,7 @@ public class ChangeDirectoryCommand implements Command {
         cli.currentDirectory = (Directory) nextDirectory;
       } catch (Exception e) {
         cli.currentDirectory = startingDirectory;
-        throw new IllegalArgumentException(s + " is not a directory");
+        throw new IllegalArgumentException("'" + s + "' directory does not exist");
       }
     }
   }

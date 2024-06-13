@@ -45,6 +45,6 @@ public class ListCommand implements Command {
     for (String name : names) {
       result.append(name).append(" ");
     }
-    return result.substring(0, result.length() - 1);
+    return result.isEmpty() ? "" : result.substring(0, result.length() - 1);
   }
 }

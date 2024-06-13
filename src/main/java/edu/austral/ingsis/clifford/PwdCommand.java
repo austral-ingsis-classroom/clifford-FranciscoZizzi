@@ -18,11 +18,12 @@ public class PwdCommand implements Command {
       if (parent == null) {
         break;
       }
-      stringBuilder.insert(0, parent.getName());
+      stringBuilder.insert(0, "/" + parent.getName());
+      index = parent;
     }
     stringBuilder.append(cli.currentDirectory.getName());
     int rootNameLength = cli.root.getName().length();
-    stringBuilder.replace(0, rootNameLength, "/");
+    stringBuilder.delete(0, rootNameLength + 1);
     return stringBuilder.toString();
   }
 
@@ -41,18 +42,5 @@ public class PwdCommand implements Command {
       }
     }
     return null;
-  }
-
-  private void navigateRoute(String[] route) {
-    Directory startingDirectory = cli.currentDirectory;
-    for (String s : route) {
-      try {
-        FileSystem nextDirectory = cli.currentDirectory.getChild(s);
-        cli.currentDirectory = (Directory) nextDirectory;
-      } catch (Exception e) {
-        cli.currentDirectory = startingDirectory;
-        throw new IllegalArgumentException(s + " is not a directory");
-      }
-    }
   }
 }
