@@ -18,7 +18,7 @@ public class TouchCommand implements Command {
     if (fileName.contains("/")) {
       throw new IllegalArgumentException("file cannot contain a /");
     }
-    cli.currentDirectory.addChild(new File("fileName"));
+    cli.currentDirectory.addChild(new File(fileName));
     return "'" + fileName + "' file created";
   }
 }

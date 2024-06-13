@@ -11,6 +11,14 @@ public class MkdirCommand implements Command {
 
   @Override
   public String execute(List<String> options, List<String> arguments) {
-    return "";
+    if (options.size() + arguments.size() != 1) {
+      throw new IllegalArgumentException("missing argument");
+    }
+    String dirName = options.isEmpty() ? arguments.getFirst() : options.getFirst();
+    if (dirName.contains("/")) {
+      throw new IllegalArgumentException("directory cannot contain a / in it's name");
+    }
+    cli.currentDirectory.addChild(new Directory(dirName));
+    return "'" + dirName + "' file created";
   }
 }
