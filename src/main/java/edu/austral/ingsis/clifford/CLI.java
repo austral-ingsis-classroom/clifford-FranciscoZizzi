@@ -33,17 +33,17 @@ public class CLI {
       }
     }
     switch (command) {
-      case "ls" :
+      case "ls":
         return new ListCommand(this).execute(options, arguments);
-      case "cd" :
+      case "cd":
         return new ChangeDirectoryCommand(this).execute(options, arguments);
-      case "touch" :
+      case "touch":
         return new TouchCommand(this).execute(options, arguments);
-      case "mkdir" :
+      case "mkdir":
         return new MkdirCommand(this).execute(options, arguments);
-      case "rm" :
+      case "rm":
         return new RemoveCommand(this).execute(options, arguments);
-      case "pwd" :
+      case "pwd":
         return new PwdCommand(this).execute(options, arguments);
       default:
         return "Unknown command: " + command;

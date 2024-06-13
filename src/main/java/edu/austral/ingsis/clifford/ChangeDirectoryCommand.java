@@ -19,9 +19,9 @@ public class ChangeDirectoryCommand implements Command {
     }
     String argument = arguments.getFirst();
     switch (argument) {
-      case "." :
+      case ".":
         break;
-      case ".." :
+      case "..":
         Directory parent = goToParentDirectory();
         if (parent == null) {
           cli.currentDirectory = cli.root;
@@ -29,7 +29,7 @@ public class ChangeDirectoryCommand implements Command {
         }
         cli.currentDirectory = goToParentDirectory();
         break;
-      default :
+      default:
         if (argument.startsWith("/")) {
           cli.currentDirectory = cli.root;
           String[] route = argument.split("/");

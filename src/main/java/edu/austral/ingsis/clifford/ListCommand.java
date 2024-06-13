@@ -29,7 +29,7 @@ public class ListCommand implements Command {
         case "desc":
           names.sort(Comparator.reverseOrder());
           break;
-        default :
+        default:
           return ("unknown parameter " + option.split("=")[1]);
       }
       return listNames(names);
