@@ -23,7 +23,11 @@ public class CLI {
 
     for (int i = 1; i < components.length; i++) {
       if (components[i].startsWith("--")) {
-        options.add(components[i]);
+        if (arguments.isEmpty()) {
+          options.add(components[i]);
+        } else {
+          arguments.add(components[i]);
+        }
       }
       else {
         arguments.add(components[i]);
@@ -34,8 +38,8 @@ public class CLI {
       case "cd" -> new ChangeDirectoryCommand(this).execute(options, arguments);
       case "touch" -> new TouchCommand(this).execute(options, arguments);
       case "mkdir" -> new MkdirCommand(this).execute(options, arguments);
-      case "pwd" -> new PwdCommand(this).execute(options, arguments);
       case "rm" -> new RemoveCommand(this).execute(options, arguments);
+      case "pwd" -> new PwdCommand(this).execute(options, arguments);
       default -> throw new IllegalArgumentException("Unknown command: " + command);
     };
   }
