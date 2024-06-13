@@ -1,0 +1,32 @@
+@startuml
+
+interface FileSystem {
+    +getName(): String
+}
+class File implements FileSystem {
+    -name: String
+    +getName(): String
+}
+class Directory implements FileSystem {
+    -children: FileSystem[]
+    -name: String
+    +delete(String): void
+    +getName(): String
+    +getChildren(): FileSystem[]
+    +addChild(FileSystemObject)
+}
+
+class CLI {
+    -currentDirectory: Directory
+    +executeCommand(String): String
+}
+
+interface Command {
+    +execute(target, options, params): String
+}
+
+Directory o-- FileSystem
+CLI -> Command
+Command --> FileSystem
+
+@enduml
