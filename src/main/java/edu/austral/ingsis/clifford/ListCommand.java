@@ -20,7 +20,7 @@ public class ListCommand implements Command {
     if (options.isEmpty()) {
       return listNames(names);
     }
-    String option = options.getFirst();
+    String option = options.get(0);
     if (option.startsWith("--ord=")) {
       switch (option.split("=")[1]) {
         case "asc":
@@ -50,6 +50,6 @@ public class ListCommand implements Command {
     for (String name : names) {
       result.append(name).append(" ");
     }
-    return result.isEmpty() ? "" : result.substring(0, result.length() - 1);
+    return result.length() == 0 ? "" : result.substring(0, result.length() - 1);
   }
 }

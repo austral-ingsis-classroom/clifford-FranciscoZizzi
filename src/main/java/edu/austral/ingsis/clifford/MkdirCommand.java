@@ -14,7 +14,7 @@ public class MkdirCommand implements Command {
     if (options.size() + arguments.size() != 1) {
       return "missing argument";
     }
-    String dirName = options.isEmpty() ? arguments.getFirst() : options.getFirst();
+    String dirName = options.isEmpty() ? arguments.get(0) : options.get(0);
     if (dirName.contains("/")) {
       return ("directory cannot contain a / in it's name");
     }

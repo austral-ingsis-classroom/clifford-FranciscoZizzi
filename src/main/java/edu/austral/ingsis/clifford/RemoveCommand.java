@@ -14,21 +14,21 @@ public class RemoveCommand implements Command {
     if (options.isEmpty() && arguments.isEmpty()) {
       return ("missing arguments");
     }
-    if (!options.isEmpty() && options.getFirst().equals("--recursive") && arguments.isEmpty()) {
+    if (!options.isEmpty() && options.get(0).equals("--recursive") && arguments.isEmpty()) {
       cli.currentDirectory.remove("--recursive");
       return "'--recursive' removed";
-    } else if (!options.isEmpty() && options.getFirst().equals("--recursive")) {
-      cli.currentDirectory.remove(arguments.getFirst());
+    } else if (!options.isEmpty() && options.get(0).equals("--recursive")) {
+      cli.currentDirectory.remove(arguments.get(0));
     } else {
       if (options.isEmpty()) {
-        FileSystem object = cli.currentDirectory.getChild(arguments.getFirst());
+        FileSystem object = cli.currentDirectory.getChild(arguments.get(0));
         if (!(object instanceof Directory)) {
-          cli.currentDirectory.remove(arguments.getFirst());
+          cli.currentDirectory.remove(arguments.get(0));
         } else {
-          return "cannot remove '" + arguments.getFirst() + "', is a directory";
+          return "cannot remove '" + arguments.get(0) + "', is a directory";
         }
       }
     }
-    return "'" + arguments.getFirst() + "' removed";
+    return "'" + arguments.get(0) + "' removed";
   }
 }

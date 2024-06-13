@@ -14,7 +14,7 @@ public class TouchCommand implements Command {
     if (options.size() + arguments.size() != 1) {
       return ("missing argument");
     }
-    String fileName = options.isEmpty() ? arguments.getFirst() : options.getFirst();
+    String fileName = options.isEmpty() ? arguments.get(0) : options.get(0);
     if (fileName.contains("/")) {
       return ("file cannot contain a /");
     }

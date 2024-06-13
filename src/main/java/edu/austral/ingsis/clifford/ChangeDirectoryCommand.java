@@ -17,7 +17,7 @@ public class ChangeDirectoryCommand implements Command {
     if (arguments.size() != 1) {
       return ("invalid arguments");
     }
-    String argument = arguments.getFirst();
+    String argument = arguments.get(0);
     switch (argument) {
       case ".":
         break;
