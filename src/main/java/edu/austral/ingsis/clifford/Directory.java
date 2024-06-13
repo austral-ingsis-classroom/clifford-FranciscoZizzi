@@ -1,10 +1,15 @@
 package edu.austral.ingsis.clifford;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Directory implements FileSystem {
-  private List<FileSystem> children;
+  private List<FileSystem> children = new ArrayList<>();
   private String name;
+
+  public Directory(String name) {
+    this.name = name;
+  }
 
   @Override
   public String getName() {
