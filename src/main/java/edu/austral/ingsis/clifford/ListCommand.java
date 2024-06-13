@@ -23,11 +23,14 @@ public class ListCommand implements Command {
     String option = options.getFirst();
     if (option.startsWith("--ord=")) {
       switch (option.split("=")[1]) {
-        case "asc" -> names.sort(String::compareTo);
-        case "desc" -> names.sort(Comparator.reverseOrder());
-        default -> {
+        case "asc":
+          names.sort(String::compareTo);
+          break;
+        case "desc":
+          names.sort(Comparator.reverseOrder());
+          break;
+        default :
           return ("unknown parameter " + option.split("=")[1]);
-        }
       }
       return listNames(names);
     }

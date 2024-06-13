@@ -32,14 +32,21 @@ public class CLI {
         arguments.add(components[i]);
       }
     }
-    return switch (command) {
-      case "ls" -> new ListCommand(this).execute(options, arguments);
-      case "cd" -> new ChangeDirectoryCommand(this).execute(options, arguments);
-      case "touch" -> new TouchCommand(this).execute(options, arguments);
-      case "mkdir" -> new MkdirCommand(this).execute(options, arguments);
-      case "rm" -> new RemoveCommand(this).execute(options, arguments);
-      case "pwd" -> new PwdCommand(this).execute(options, arguments);
-      default -> "Unknown command: " + command;
-    };
+    switch (command) {
+      case "ls" :
+        return new ListCommand(this).execute(options, arguments);
+      case "cd" :
+        return new ChangeDirectoryCommand(this).execute(options, arguments);
+      case "touch" :
+        return new TouchCommand(this).execute(options, arguments);
+      case "mkdir" :
+        return new MkdirCommand(this).execute(options, arguments);
+      case "rm" :
+        return new RemoveCommand(this).execute(options, arguments);
+      case "pwd" :
+        return new PwdCommand(this).execute(options, arguments);
+      default:
+        return "Unknown command: " + command;
+    }
   }
 }
