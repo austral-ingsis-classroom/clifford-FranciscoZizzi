@@ -14,7 +14,7 @@ public class ListCommand implements Command {
   @Override
   public String execute(List<String> options, List<String> arguments) {
     if (options.size() > 1 || !arguments.isEmpty()) {
-      throw new IllegalArgumentException("invalid options or arguments");
+      return ("invalid options or arguments");
     }
     List<String> names = getNameList(cli.currentDirectory.getChildren());
     if (options.isEmpty()) {
@@ -25,11 +25,13 @@ public class ListCommand implements Command {
       switch (option.split("=")[1]) {
         case "asc" -> names.sort(String::compareTo);
         case "desc" -> names.sort(Comparator.reverseOrder());
-        default -> throw new IllegalArgumentException("unknown parameter " + option.split("=")[1]);
+        default -> {
+          return ("unknown parameter " + option.split("=")[1]);
+        }
       }
       return listNames(names);
     }
-    throw new IllegalArgumentException();
+    return "error";
   }
 
   private List<String> getNameList(List<FileSystem> elements) {

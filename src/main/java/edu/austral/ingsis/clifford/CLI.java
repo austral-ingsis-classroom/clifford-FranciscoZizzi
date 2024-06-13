@@ -18,7 +18,7 @@ public class CLI {
     String command = components[0];
 
     List<String> options = new ArrayList<>();
-    
+
     List<String> arguments = new ArrayList<>();
 
     for (int i = 1; i < components.length; i++) {
@@ -28,8 +28,7 @@ public class CLI {
         } else {
           arguments.add(components[i]);
         }
-      }
-      else {
+      } else {
         arguments.add(components[i]);
       }
     }
@@ -40,7 +39,7 @@ public class CLI {
       case "mkdir" -> new MkdirCommand(this).execute(options, arguments);
       case "rm" -> new RemoveCommand(this).execute(options, arguments);
       case "pwd" -> new PwdCommand(this).execute(options, arguments);
-      default -> throw new IllegalArgumentException("Unknown command: " + command);
+      default -> "Unknown command: " + command;
     };
   }
 }

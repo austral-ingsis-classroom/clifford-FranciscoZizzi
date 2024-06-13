@@ -12,13 +12,13 @@ public class RemoveCommand implements Command {
   @Override
   public String execute(List<String> options, List<String> arguments) {
     if (options.isEmpty() && arguments.isEmpty()) {
-      throw new IllegalArgumentException("missing arguments");
+      return ("missing arguments");
     }
     if (!options.isEmpty() && options.getFirst().equals("--recursive") && arguments.isEmpty()) {
       cli.currentDirectory.remove("--recursive");
       return "'--recursive' removed";
     } else if (!options.isEmpty() && options.getFirst().equals("--recursive")) {
-        cli.currentDirectory.remove(arguments.getFirst());
+      cli.currentDirectory.remove(arguments.getFirst());
     } else {
       if (options.isEmpty()) {
         FileSystem object = cli.currentDirectory.getChild(arguments.getFirst());

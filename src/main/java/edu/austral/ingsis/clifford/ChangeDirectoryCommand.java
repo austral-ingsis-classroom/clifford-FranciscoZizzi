@@ -12,14 +12,14 @@ public class ChangeDirectoryCommand implements Command {
   @Override
   public String execute(List<String> options, List<String> arguments) {
     if (!options.isEmpty()) {
-      throw new IllegalArgumentException("no options allowed");
+      return ("no options allowed");
     }
     if (arguments.size() != 1) {
-      throw new IllegalArgumentException("invalid arguments");
+      return ("invalid arguments");
     }
     String argument = arguments.getFirst();
     switch (argument) {
-      case "." -> { }
+      case "." -> {}
       case ".." -> {
         Directory parent = goToParentDirectory();
         if (parent == null) {

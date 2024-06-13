@@ -12,11 +12,11 @@ public class TouchCommand implements Command {
   @Override
   public String execute(List<String> options, List<String> arguments) {
     if (options.size() + arguments.size() != 1) {
-      throw new IllegalArgumentException("missing argument");
+      return ("missing argument");
     }
     String fileName = options.isEmpty() ? arguments.getFirst() : options.getFirst();
     if (fileName.contains("/")) {
-      throw new IllegalArgumentException("file cannot contain a /");
+      return ("file cannot contain a /");
     }
     cli.currentDirectory.addChild(new File(fileName));
     return "'" + fileName + "' file created";
