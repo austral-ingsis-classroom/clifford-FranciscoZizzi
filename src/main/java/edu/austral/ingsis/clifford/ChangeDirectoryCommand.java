@@ -21,6 +21,7 @@ public class ChangeDirectoryCommand implements Command {
     switch (argument) {
       case "." -> { }
       case ".." -> cli.currentDirectory = goToParentDirectory();
+//      case "/" -> cli.currentDirectory = cli.root;
       default -> {
         if (argument.startsWith("/")) {
           cli.currentDirectory = cli.root;

@@ -31,11 +31,11 @@ public class CLI {
     }
     return switch (command) {
       case "ls" -> new ListCommand(this).execute(options, arguments);
-      case "mkdir" -> new MkdirCommand(this).execute(options, arguments);
       case "cd" -> new ChangeDirectoryCommand(this).execute(options, arguments);
+      case "touch" -> new TouchCommand(this).execute(options, arguments);
+      case "mkdir" -> new MkdirCommand(this).execute(options, arguments);
       case "pwd" -> new PwdCommand(this).execute(options, arguments);
       case "rm" -> new RemoveCommand(this).execute(options, arguments);
-      case "touch" -> new TouchCommand(this).execute(options, arguments);
       default -> throw new IllegalArgumentException("Unknown command: " + command);
     };
   }
